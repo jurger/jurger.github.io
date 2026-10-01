@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KeePass Backup</title>
+<meta name="description" content="KeePass Backup is a personal Windows tool that copies a KeePass password database to the owner's own Google Drive on a schedule.">
+<style>
+  :root {
+    --paper: #f4f6f7;
+    --ink: #18232d;
+    --muted: #52606c;
+    --rule: #d3dade;
+    --pine: #1d6b58;
+    --pine-soft: #e1eeea;
+    --serif: Charter, "Bitstream Charter", "Sitka Text", Cambria, Georgia, serif;
+    --sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #12181d;
+      --ink: #e3e8eb;
+      --muted: #9aa7b1;
+      --rule: #2c3740;
+      --pine: #6cc2a8;
+      --pine-soft: #1a2c27;
+    }
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font: 17px/1.6 var(--sans);
+  }
+  main { max-width: 42rem; margin: 0 auto; padding: 3.5rem 1.5rem 4rem; }
+  h1, h2 { font-family: var(--serif); font-weight: 600; line-height: 1.2; }
+  h1 { font-size: 2.6rem; margin: 0 0 .75rem; letter-spacing: -.01em; }
+  h2 { font-size: 1.45rem; margin: 2.75rem 0 .75rem; }
+  p, li { max-width: 38rem; }
+  .lead { font-size: 1.2rem; color: var(--muted); margin: 0 0 2.25rem; }
+  a { color: var(--pine); text-underline-offset: .15em; }
+  a:focus-visible { outline: 2px solid var(--pine); outline-offset: 3px; border-radius: 2px; }
+  .lang { font-size: .95rem; margin: 0 0 2.5rem; display: flex; flex-wrap: wrap; gap: .4rem 1.5rem; }
+
+  /* The one visual: where the data goes */
+  .flow {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 1rem;
+    margin: 0 0 1rem;
+  }
+  .node { border: 1.5px solid var(--ink); border-radius: 10px; padding: 1rem 1.1rem; }
+  .node strong { display: block; font-family: var(--serif); font-size: 1.1rem; }
+  .node span { color: var(--muted); font-size: .92rem; }
+  .node.drive { border-color: var(--pine); background: var(--pine-soft); }
+  .arrow { color: var(--pine); }
+  .flow-note { color: var(--muted); font-size: .95rem; margin: 0 0 1rem; }
+  @media (max-width: 34rem) {
+    .flow { grid-template-columns: 1fr; }
+    .arrow { transform: rotate(90deg); justify-self: center; }
+  }
+
+  ol { padding-left: 1.4rem; }
+  ol li { margin: .35rem 0; }
+  ol li::marker { color: var(--pine); font-weight: 600; }
+  ul { padding-left: 1.2rem; }
+  code { font-size: .92em; background: var(--pine-soft); padding: .05em .35em; border-radius: 4px; }
+  hr { border: 0; border-top: 1px solid var(--rule); margin: 3.5rem 0 0; }
+  footer { color: var(--muted); font-size: .9rem; padding-top: 1.25rem; }
+  footer p { margin: .3rem 0; }
+</style>
+</head>
+<body>
+<main>
+  <h1>KeePass Backup</h1>
+  <p class="lead">A personal Windows tool that copies a KeePass password database to the owner's own Google Drive on a schedule.</p>
+  <p class="lang"><a href="privacy.html">Privacy policy</a><a href="#ru" hreflang="ru">Описание на русском</a></p>
+
+  <div class="flow" role="img" aria-label="The encrypted database file goes from your Windows PC to a folder in your own Google Drive">
+    <div class="node">
+      <strong>Your Windows PC</strong>
+      <span>KeePass database (.kdbx), already encrypted by KeePass</span>
+    </div>
+    <svg class="arrow" width="44" height="20" viewBox="0 0 44 20" aria-hidden="true"><path d="M2 10h36M30 3l8 7-8 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <div class="node drive">
+      <strong>Your Google Drive</strong>
+      <span>A backup folder created by this app</span>
+    </div>
+  </div>
+  <p class="flow-note">Nothing passes through any other server. The app runs on your computer and talks only to Google.</p>
+
+  <h2>What it does</h2>
+  <p>A scheduled task on the owner's computer runs every 30 minutes and:</p>
+  <ol>
+    <li>checks whether the KeePass database file has changed since the last backup;</li>
+    <li>if it has, uploads a copy to a backup folder in Google Drive that the app created itself;</li>
+    <li>verifies the upload by comparing checksums;</li>
+    <li>moves old copies to the Google Drive trash according to a retention policy (all copies for 7 days, one per day for 30 days, one per month for 12 months).</li>
+  </ol>
+
+  <h2>Google data it uses</h2>
+  <p>The app requests a single permission: <code>https://www.googleapis.com/auth/drive.file</code>. With it, the app can see and manage only the files and folders it has created. It cannot read any other files in Google Drive and does not access Gmail, Contacts, Calendar or any other Google service.</p>
+  <p>Details are in the <a href="privacy.html">privacy policy</a>.</p>
+
+  <h2>Who it is for</h2>
+  <p>KeePass Backup is a personal tool used by its developer for their own data. It is not a commercial service, has no user accounts, collects no analytics and runs no servers. The source code is a pair of PowerShell scripts.</p>
+
+  <hr>
+  <section id="ru" lang="ru">
+    <h2>По-русски</h2>
+    <p><strong>KeePass Backup</strong> — личная утилита для Windows, которая по расписанию копирует базу паролей KeePass в собственный Google Drive владельца.</p>
+    <p>Каждые 30 минут задача проверяет, изменилась ли база. Если изменилась, загружает копию в папку на Google Drive, созданную самой утилитой, сверяет контрольную сумму и переносит старые копии в корзину Drive.</p>
+    <p>Утилита запрашивает только разрешение <code>drive.file</code>, то есть видит лишь созданные ею файлы. Серверов, аккаунтов и аналитики нет: всё работает на компьютере владельца. Подробнее — в <a href="privacy.html#ru">политике конфиденциальности</a>.</p>
+  </section>
+
+  <footer>
+    <p>Contact: <a href="mailto:you@example.com">you@example.com</a></p>
+    <p>Not affiliated with or endorsed by the KeePass project or Google.</p>
+  </footer>
+</main>
+</body>
+</html>

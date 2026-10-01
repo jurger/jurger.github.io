@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy policy | KeePass Backup</title>
+<meta name="description" content="How KeePass Backup accesses, uses, stores and shares Google user data.">
+<style>
+  :root {
+    --paper: #f4f6f7;
+    --ink: #18232d;
+    --muted: #52606c;
+    --rule: #d3dade;
+    --pine: #1d6b58;
+    --pine-soft: #e1eeea;
+    --serif: Charter, "Bitstream Charter", "Sitka Text", Cambria, Georgia, serif;
+    --sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #12181d;
+      --ink: #e3e8eb;
+      --muted: #9aa7b1;
+      --rule: #2c3740;
+      --pine: #6cc2a8;
+      --pine-soft: #1a2c27;
+    }
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body { margin: 0; background: var(--paper); color: var(--ink); font: 17px/1.6 var(--sans); }
+  main { max-width: 42rem; margin: 0 auto; padding: 3rem 1.5rem 4rem; }
+  h1, h2 { font-family: var(--serif); font-weight: 600; line-height: 1.2; }
+  h1 { font-size: 2.3rem; margin: .5rem 0 .5rem; letter-spacing: -.01em; }
+  h2 { font-size: 1.3rem; margin: 2.4rem 0 .6rem; }
+  p, li { max-width: 38rem; }
+  ul { padding-left: 1.2rem; }
+  li { margin: .3rem 0; }
+  a { color: var(--pine); text-underline-offset: .15em; }
+  a:focus-visible { outline: 2px solid var(--pine); outline-offset: 3px; border-radius: 2px; }
+  code { font-size: .92em; background: var(--pine-soft); padding: .05em .35em; border-radius: 4px; overflow-wrap: anywhere; }
+  .back { font-size: .95rem; }
+  .meta { color: var(--muted); margin: 0 0 1.5rem; }
+  .nav { display: flex; flex-wrap: wrap; gap: .4rem 1.5rem; font-size: .95rem; margin: 0 0 2rem; }
+  /* The commitment that matters most to Google review gets the one emphasis on the page */
+  .pledge {
+    border-left: 4px solid var(--pine);
+    background: var(--pine-soft);
+    padding: 1rem 1.2rem;
+    border-radius: 0 8px 8px 0;
+    margin: 1.5rem 0;
+  }
+  .pledge p { margin: 0; }
+  hr { border: 0; border-top: 1px solid var(--rule); margin: 3.5rem 0 0; }
+  footer { color: var(--muted); font-size: .9rem; padding-top: 1.25rem; }
+</style>
+</head>
+<body>
+<main>
+  <p class="back"><a href="./">KeePass Backup</a></p>
+  <h1>Privacy policy</h1>
+  <p class="meta">Effective October 1, 2026</p>
+  <p class="nav"><a href="#ru" hreflang="ru">Русская версия</a></p>
+
+  <p>KeePass Backup (“the app”) is a personal Windows tool that copies a KeePass password database to the user's own Google Drive. This policy explains what Google user data the app accesses and what it does with it.</p>
+
+  <h2>Who runs the app</h2>
+  <p>The app runs entirely on the user's own computer as two PowerShell scripts. The developer operates no servers, websites or databases for the app and receives no data from it.</p>
+
+  <h2>Google user data the app accesses</h2>
+  <p>The app requests one OAuth scope: <code>https://www.googleapis.com/auth/drive.file</code>. This scope limits the app to files and folders it has created itself. Specifically, the app accesses:</p>
+  <ul>
+    <li>the backup folder it creates in the user's Google Drive;</li>
+    <li>the backup files it uploads to that folder (copies of the KeePass database);</li>
+    <li>metadata of those files: ID, name, size, creation time, MD5 checksum and whether the file is in the trash.</li>
+  </ul>
+  <p>The app cannot see any other files in Google Drive and does not access the user's name, email address, contacts, Gmail, Calendar or any other Google data.</p>
+
+  <h2>How the data is used</h2>
+  <p>The data is used only to provide the backup function:</p>
+  <ul>
+    <li>to create the backup folder and upload new backup files;</li>
+    <li>to confirm that an upload succeeded by comparing checksums;</li>
+    <li>to check that the latest backup still exists;</li>
+    <li>to move old backups to the Google Drive trash under the retention policy.</li>
+  </ul>
+  <p>The backup files are KeePass databases encrypted by KeePass with the user's master password. The app never decrypts or reads their contents.</p>
+
+  <h2>Storage and security</h2>
+  <ul>
+    <li>Backup files are stored only in the user's own Google Drive.</li>
+    <li>The OAuth refresh token is stored on the user's computer, encrypted with Windows Data Protection (DPAPI), so only the same Windows user on the same computer can decrypt it.</li>
+    <li>A local log file records file names, times and error messages. It contains no passwords, tokens or database contents.</li>
+    <li>All communication with Google uses HTTPS.</li>
+  </ul>
+
+  <h2>Sharing</h2>
+  <p>Google user data is not sold, shared with or transferred to anyone. The app contains no analytics, advertising or tracking, and the data is not used to train AI or machine learning models.</p>
+
+  <div class="pledge">
+    <p>KeePass Backup's use and transfer to any other app of information received from Google APIs will adhere to the <a href="https://developers.google.com/terms/api-services-user-data-policy">Google API Services User Data Policy</a>, including the Limited Use requirements.</p>
+  </div>
+
+  <h2>Retention and deletion</h2>
+  <p>The user keeps full control of the data:</p>
+  <ul>
+    <li>old backups are moved to the Google Drive trash automatically, and Google deletes trashed files after 30 days;</li>
+    <li>the backup folder can be deleted in Google Drive at any time;</li>
+    <li>access can be revoked at <a href="https://myaccount.google.com/permissions">myaccount.google.com/permissions</a>;</li>
+    <li>removing the scheduled task and the local app folder deletes the stored token and logs from the computer.</li>
+  </ul>
+
+  <h2>Children</h2>
+  <p>The app is not directed at children under 13 and does not knowingly process their data.</p>
+
+  <h2>Changes</h2>
+  <p>If this policy changes, the updated version will be published on this page with a new effective date.</p>
+
+  <h2>Contact</h2>
+  <p>Questions about this policy: <a href="mailto:you@example.com">you@example.com</a></p>
+
+  <hr>
+  <section id="ru" lang="ru">
+    <h2>Политика конфиденциальности (кратко по-русски)</h2>
+    <p>KeePass Backup — личная утилита для Windows, которая копирует базу паролей KeePass в собственный Google Drive пользователя. Она работает только на компьютере пользователя; у разработчика нет серверов, и никакие данные ему не передаются.</p>
+    <p>Утилита запрашивает только разрешение <code>drive.file</code> и видит лишь созданные ею папку и файлы бэкапа (а также их имя, размер, время создания и контрольную сумму). Другие файлы Google Drive, почта, контакты и прочие данные Google ей недоступны.</p>
+    <p>Данные используются только для загрузки копий, проверки их целостности и удаления старых копий в корзину. Файлы KeePass зашифрованы мастер-паролем, утилита их не расшифровывает. Токен доступа хранится на компьютере в зашифрованном виде (Windows DPAPI).</p>
+    <p>Данные никому не продаются и не передаются, не используются для рекламы, аналитики и обучения моделей ИИ. Использование данных, полученных через API Google, соответствует <a href="https://developers.google.com/terms/api-services-user-data-policy">Google API Services User Data Policy</a>, включая требования Limited Use.</p>
+    <p>Отозвать доступ можно на странице <a href="https://myaccount.google.com/permissions">myaccount.google.com/permissions</a>, а копии — удалить вместе с папкой на Google Drive.</p>
+  </section>
+
+  <footer>
+    <p>Not affiliated with or endorsed by the KeePass project or Google.</p>
+  </footer>
+</main>
+</body>
+</html>
